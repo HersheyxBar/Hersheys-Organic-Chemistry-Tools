@@ -10,6 +10,7 @@ Built With:
 
 RDKit - open-source cheminformatics software
 Matplotlib - Python plotting library
+
 Getting Started:
 
 Clone repo and install RDKit and Matplotlib
