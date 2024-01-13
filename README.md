@@ -16,3 +16,12 @@ A tool made to help people with organic chemistry.
 1. **Clone the Repository**: Get a copy of the source code on your local machine.
 2. **Install Dependencies**: Make sure to install RDKit and Matplotlib.
 3. **Run the Tool**: Follow the on-screen prompts to utilize the tool's features.
+
+### Installation
+
+To install the necessary dependencies, run the following commands in your terminal:
+
+```bash
+pip install rdkit
+pip install matplotlib
+
