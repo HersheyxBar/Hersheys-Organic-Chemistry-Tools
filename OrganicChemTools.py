@@ -5,20 +5,28 @@ from rdkit.Chem import Draw, Descriptors
 import matplotlib.pyplot as plt
 
 def draw_structure(smiles):
-    # Convert SMILES string to a molecule object
-    mol = Chem.MolFromSmiles(smiles)
-    # Save the molecule's image as a PNG file using the SMILES string as the filename
-    Draw.MolToFile(mol, f"{smiles}.png")
-    # Display the image in a matplotlib plot
-    plt.imshow(plt.imread(f"{smiles}.png"))
-    plt.axis('off')  # Hide the axis for clarity
-    plt.show()  # Show the plot with the molecule image
+    try:
+        mol = Chem.MolFromSmiles(smiles)
+        if mol is None:  # Check if the molecule conversion was successful
+            raise ValueError("Invalid SMILES notation.")
+        Draw.MolToFile(mol, f"{smiles}.png")
+        plt.imshow(plt.imread(f"{smiles}.png"))
+        plt.axis('off')
+        plt.show()
+    except ValueError as e:
+        print(e)
+        return False  # Indicates failure
+    return True  # Indicates success
 
 def calculate_molecular_weight(smiles):
-    # Convert SMILES string to a molecule object
-    mol = Chem.MolFromSmiles(smiles)
-    # Calculate and return the molecular weight of the molecule
-    return Descriptors.MolWt(mol)
+    try:
+        mol = Chem.MolFromSmiles(smiles)
+        if mol is None:
+            raise ValueError("Invalid SMILES notation.")
+        return Descriptors.MolWt(mol)
+    except ValueError as e:
+        print(e)
+        return None
 
 def main():
     while True:
@@ -31,14 +39,21 @@ def main():
 
         # Handling the user's choice
         if choice == '1':
-            # Draw chemical structure based on SMILES input
-            smiles = input("Enter SMILES notation: ")
-            draw_structure(smiles)
+            while True:
+                smiles = input("Enter SMILES notation: ")
+                if draw_structure(smiles):
+                    break  # Exit loop if successful
+                else:
+                    print("Please try again with a valid SMILES notation.")
         elif choice == '2':
-            # Calculate molecular weight based on SMILES input
-            smiles = input("Enter SMILES notation: ")
-            weight = calculate_molecular_weight(smiles)
-            print(f"Molecular Weight: {weight}")
+            while True:
+                smiles = input("Enter SMILES notation: ")
+                weight = calculate_molecular_weight(smiles)
+                if weight is not None:
+                    print(f"Molecular Weight: {weight}")
+                    break  # Exit loop if successful
+                else:
+                    print("Please try again with a valid SMILES notation.")
         elif choice == '3':
             # Exit the program
             break
