@@ -1,12 +1,12 @@
 # Hershey's Organic Chemistry Tools 
 
 ## Organic Chemistry Assistant 
-A tool made to help people with organic chemistry.
+A tool made to help people with organic chemistry. I plan on adding new features to a neverending project.
 
 ### Features
 - **Draws Chemical Structures**: Converts SMILES notations into visual molecular structures, enabling a better understanding of molecular geometry.
 - **Calculates Molecular Weights**: Utilizes SMILES notations to assist with formula creation and stoichiometry.
-- **User-Friendly Interface**: A simple command-line interface that's accessible for users of all programming levels.
+- **User-Friendly Interface**: A simple command-line interface that's accessible.
 
 ### Built With
 - **RDKit**: An open-source cheminformatics software.
