@@ -1,4 +1,4 @@
-# HersheysOrganicChemToolsProgram
+# Hershey's Organic Chemistry Tools 
 
 ## Organic Chemistry Assistant 
 A tool made to help people with organic chemistry.
