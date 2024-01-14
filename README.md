@@ -1,5 +1,10 @@
 # Hershey's Organic Chemistry Tools 
 
+![image](https://github.com/HersheyxBar/Hersheys-Organic-Chemistry-Tools/assets/35160750/606132b9-d399-4cfb-9291-cfef7ae591f6)
+
+![image](https://github.com/HersheyxBar/Hersheys-Organic-Chemistry-Tools/assets/35160750/fe6e67de-8c81-489e-9874-44539616536e)
+
+
 ## Organic Chemistry Assistant 
 A tool made to help people with organic chemistry. I plan on adding new features to this project indefinately.
 
