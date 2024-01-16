@@ -1,6 +1,6 @@
 # Import necessary libraries from RDKit for cheminformatics tasks
 from rdkit import Chem
-from rdkit.Chem import Draw, Descriptors
+from rdkit.Chem import Draw, Descriptors, Crippen
 # Import matplotlib for image display
 import matplotlib.pyplot as plt
 
@@ -28,13 +28,25 @@ def calculate_molecular_weight(smiles):
         print(e)
         return None
 
+# New function to calculate the logP value of a molecule
+def calculate_logp(smiles):
+    try:
+        mol = Chem.MolFromSmiles(smiles)
+        if mol is None:  # Check if the molecule conversion was successful
+            raise ValueError("Invalid SMILES notation.")
+        return Crippen.MolLogP(mol)
+    except ValueError as e:
+        print(e)
+        return None
+
 def main():
     while True:
         # Main menu for the application
         print("\nOrganic Chemistry Assistant")
         print("1. Draw Chemical Structure")
         print("2. Calculate Molecular Weight")
-        print("3. Exit")
+        print("3. Calculate LogP")
+        print("4. Exit")
         choice = input("Enter your choice: ")
 
         # Handling the user's choice
@@ -55,6 +67,15 @@ def main():
                 else:
                     print("Please try again with a valid SMILES notation.")
         elif choice == '3':
+            while True:
+                smiles = input("Enter SMILES notation: ")
+                logp = calculate_logp(smiles)
+                if logp is not None:
+                    print(f"LogP: {logp}")
+                    break  # Exit loop if successful
+                else:
+                    print("Please try again with a valid SMILES notation.")
+        elif choice == '4':
             # Exit the program
             break
         else:
