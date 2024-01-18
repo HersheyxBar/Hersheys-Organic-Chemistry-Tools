@@ -1,8 +1,11 @@
 # Import necessary libraries from RDKit for cheminformatics tasks
+import tkinter as tk
+from tkinter import simpledialog
 from rdkit import Chem
 from rdkit.Chem import Draw, Descriptors, Crippen
 # Import matplotlib for image display
 import matplotlib.pyplot as plt
+from PIL import Image, ImageTk
 
 def draw_structure(smiles):
     try:
@@ -38,6 +41,46 @@ def calculate_logp(smiles):
     except ValueError as e:
         print(e)
         return None
+
+def on_draw_structure():
+    smiles = simpledialog.askstring("Input", "Enter SMILES notation:", parent=root)
+    if smiles:
+        draw_structure(smiles)
+
+def on_calculate_mw():
+    smiles = simpledialog.askstring("Input", "Enter SMILES notation:", parent=root)
+    if smiles:
+        weight = calculate_molecular_weight(smiles)
+        if weight is not None:
+            result_label.config(text=f"Molecular Weight: {weight}")
+
+def on_calculate_logp():
+    smiles = simpledialog.askstring("Input", "Enter SMILES notation:", parent=root)
+    if smiles:
+        logp = calculate_logp(smiles)
+        if logp is not None:
+            result_label.config(text=f"LogP: {logp}")
+
+# Create the main window
+root = tk.Tk()
+root.title("Organic Chemistry Assistant")
+
+# Create buttons
+draw_button = tk.Button(root, text="Draw Chemical Structure", command=on_draw_structure)
+draw_button.pack()
+
+mw_button = tk.Button(root, text="Calculate Molecular Weight", command=on_calculate_mw)
+mw_button.pack()
+
+logp_button = tk.Button(root, text="Calculate LogP", command=on_calculate_logp)
+logp_button.pack()
+
+# Label for displaying results
+result_label = tk.Label(root, text="")
+result_label.pack()
+
+# Start the GUI loop
+root.mainloop()
 
 def main():
     while True:
